@@ -6,7 +6,9 @@
 </head>
 <body><h1>Pizza's</h1>
 <ul class="zebra">
-    <li th:each="pizza:${pizzas}" th:text="${pizza}"></li>
+    <li th:each="pizza:${pizzas}" th:object="${pizza}">
+        <span th:text="*{naam}"></span>&euro;<span th:text="*{prijs}"></span>
+    </li>
 </ul>
 </body>
 </html>
