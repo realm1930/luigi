@@ -1,4 +1,4 @@
-package be.vdab.frida.domain;
+package be.vdab.luigi.domain;
 
 public class Adres {
     private final String straat;

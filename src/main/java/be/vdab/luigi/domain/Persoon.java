@@ -1,4 +1,4 @@
-package be.vdab.frida.domain;
+package be.vdab.luigi.domain;
 
 import java.time.LocalDate;
 
@@ -7,7 +7,7 @@ public class Persoon {
     private final String familienaam;
     private final int aantalKinderen;
     private final boolean gehuwd;
-    private final LocalDate geboorte;
+    private final LocalDate geboorte; 
     private final Adres adres;
 
     public Persoon(String voornaam, String familienaam, int aantalKinderen, boolean gehuwd, LocalDate geboorte, Adres adres) {
@@ -19,10 +19,6 @@ public class Persoon {
         this.adres = adres;
     }
 
-    public String getNaam(){
-        return voornaam+" "+familienaam;
-    }
-    
     public String getVoornaam() {
         return voornaam;
     }
@@ -45,5 +41,10 @@ public class Persoon {
 
     public Adres getAdres() {
         return adres;
+    
     }
+    public String getNaam(){
+        return voornaam+" "+familienaam;
+    }
+    
 }
