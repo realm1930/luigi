@@ -22,7 +22,9 @@ public class PizzaController {
             new Pizza(4,"Quattro Stagione", BigDecimal.valueOf(5),false),
             new Pizza(4,"Margherita Mini", BigDecimal.valueOf(3),false),
             new Pizza(5,"Spicy Pizza", BigDecimal.valueOf(5), true),
-            new Pizza(6,"Hawai",BigDecimal.valueOf(4),false)
+            new Pizza(6,"Hawai",BigDecimal.valueOf(4),false),
+            new Pizza(7,"Vegeteriano", BigDecimal.valueOf(4),false),
+            new Pizza(8,"Vegetariano Picante",BigDecimal.valueOf(4),true)
     };
 
     @GetMapping
