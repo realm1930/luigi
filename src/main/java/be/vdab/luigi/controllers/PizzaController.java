@@ -20,7 +20,9 @@ public class PizzaController {
             new Pizza(2, "Margherita", BigDecimal.valueOf(5), false),
             new Pizza(3, "Calzone", BigDecimal.valueOf(4), false),
             new Pizza(4,"Quattro Stagione", BigDecimal.valueOf(5),false),
-            new Pizza(4,"Margherita Mini", BigDecimal.valueOf(3),false)
+            new Pizza(4,"Margherita Mini", BigDecimal.valueOf(3),false),
+            new Pizza(5,"Spicy Pizza", BigDecimal.valueOf(5), true),
+            new Pizza(6,"Hawai",BigDecimal.valueOf(4),false)
     };
 
     @GetMapping
@@ -52,8 +54,8 @@ public class PizzaController {
     }
     @GetMapping("prijzen/{prijs}")
     public ModelAndView pizzasMetEenPrijs(@PathVariable BigDecimal prijs) {
-        var modelAndView = new ModelAndView("prijzen","pizzas",pizzasMetPrijs(prijs));
-        modelAndView.addObject("prijzen", uniekePrijzen());
+        var modelAndView = new ModelAndView("prijzen","pizzas",pizzasMetPrijs(prijs)).
+                addObject("prijzen", uniekePrijzen());
         return modelAndView;
     }
 }
