@@ -16,7 +16,9 @@ public class PizzaController {
     private final Pizza[] pizzas = {
             new Pizza(1, "Prosciutto", BigDecimal.valueOf(4), true),
             new Pizza(2, "Margherita", BigDecimal.valueOf(5), false),
-            new Pizza(3, "Calzone", BigDecimal.valueOf(4), false)
+            new Pizza(3, "Calzone", BigDecimal.valueOf(4), false),
+            new Pizza(4,"Quattro Stagione", BigDecimal.valueOf(5),false),
+            new Pizza(4,"Margherita", BigDecimal.valueOf(3),false)
     };
 
     @GetMapping
