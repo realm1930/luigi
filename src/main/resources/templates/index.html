@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments::head(title='Pizza Luigi')"></head>
+<head th:replace="fragments::head(title='Pizza Luii')"></head>
 <body>
 <nav th:replace="fragments::menu"></nav>
 <h1>Pizza Luigi</h1>
@@ -18,5 +18,6 @@
     <dd th:object="${zaakvoerder.adres}"
         th:text="|*{straat} *{huisNr} *{postcode} *{gemeente}|"></dd>
 </dl>
+<p>De pagina werd <span th:text="${aantalKeerBekeken}"></span> keer bekeken.</p>
 </body>
 </html>
