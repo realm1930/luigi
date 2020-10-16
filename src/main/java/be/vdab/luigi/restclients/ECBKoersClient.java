@@ -2,6 +2,7 @@ package be.vdab.luigi.restclients;
 
 import be.vdab.luigi.exceptions.KoersClientException;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 @Component
-@Qualifier("ECB")
 class ECBKoersClient implements KoersClient {
     private final URL url;
     private final XMLInputFactory factory = XMLInputFactory.newInstance();
@@ -32,7 +32,7 @@ class ECBKoersClient implements KoersClient {
             while (reader.hasNext()) {
                 reader.next();
                 if (reader.isStartElement()) {
-                    if ("USD".equals(reader.getAttributeValue(0))){
+                    if ("USD".equals(reader.getAttributeValue(0))) {
                         return new BigDecimal(reader.getAttributeValue(1));
                     }
                 }
