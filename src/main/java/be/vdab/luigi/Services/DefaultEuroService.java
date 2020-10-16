@@ -8,8 +8,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 @Service
-public
-class DefaultEuroService implements EuroService {
+public class DefaultEuroService implements EuroService {
     private final KoersClient[] koersClients;
 
     public DefaultEuroService(KoersClient[] koersClients){
