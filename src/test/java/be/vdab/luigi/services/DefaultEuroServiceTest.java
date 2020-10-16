@@ -22,7 +22,7 @@ class DefaultEuroServiceTest {
     private EuroService defaultEuroService;
     @BeforeEach
     void beforeEach(){
-        defaultEuroService = new DefaultEuroService(koersClient);
+        defaultEuroService = new DefaultEuroService(new KoersClient[]{koersClient});
     }
     @Test
     void naarDollar(){
