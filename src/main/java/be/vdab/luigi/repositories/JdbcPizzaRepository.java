@@ -41,8 +41,9 @@ public class JdbcPizzaRepository implements PizzaRespository{
 
     @Override
     public void update(Pizza pizza) {
-        var sql = "update pizzas set naam=?, prijs=?, pikant=?,where id=?";
-        if (template.update(sql, pizza.getNaam(),pizza.getPrijs(),pizza.isPikant(),pizza.getId()) ==0){
+        var sql = "update pizzas set naam=?, prijs=?, pikant=? where id = ?";
+        if (template.update(sql, pizza.getNaam(), pizza.getPrijs(), pizza.isPikant(),
+                pizza.getId()) == 0) {
             throw new PizzaNietGevondenException();
         }
     }
@@ -61,9 +62,9 @@ public class JdbcPizzaRepository implements PizzaRespository{
     @Override
     public Optional<Pizza> findById(long id) {
         try {
-            var sql = "select id, naam, prijs, pikant from pizzas where is = ?";
-            return Optional.of(template.queryForObject(sql,pizzaMapper,id));
-        } catch (IncorrectResultSizeDataAccessException e) {
+            var sql = "select id, naam, prijs, pikant from pizzas where id = ?";
+            return Optional.of(template.queryForObject(sql, pizzaMapper, id));
+        } catch (IncorrectResultSizeDataAccessException ex) {
             return Optional.empty();
         }
     }
@@ -95,8 +96,8 @@ public class JdbcPizzaRepository implements PizzaRespository{
         if (ids.isEmpty()) {
             return List.of();
         }
-        var sql = "select id, naam, prijs, pikant from pizzas where id in ("+
-        "?) order by id";
+        var sql = "select id, naam, prijs, pikant from pizzas where id in("
+                + "?,".repeat(ids.size()-1)+"?) order by id";
         return template.query(sql, ids.toArray(), pizzaMapper);
     }
 }
