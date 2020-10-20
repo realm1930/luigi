@@ -8,6 +8,7 @@ import be.vdab.luigi.forms.VanTotPrijsForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,6 +72,11 @@ public class PizzaController {
     @GetMapping("vantotprijs/form")
     public ModelAndView vanTotPrijsForm() {
         return new ModelAndView("vantotprijs")
-                .addObject(new VanTotPrijsForm(BigDecimal.ONE, BigDecimal.TEN));
+                .addObject(new VanTotPrijsForm(null, null));
+    }
+    @GetMapping("vantotprijs")
+    public ModelAndView vanTotPrijs(VanTotPrijsForm form){
+        return new ModelAndView("vantotprijs","pizzas",pizzaService.findByPrijsBetween(
+                form.getVan(),form.getTot()));
     }
 }
