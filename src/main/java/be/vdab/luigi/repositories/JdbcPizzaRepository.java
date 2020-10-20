@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Repository
-public class JdbcPizzaRepository implements PizzaRespository{
+public class JdbcPizzaRepository implements PizzaRepository {
     private final JdbcTemplate template;
     private final SimpleJdbcInsert insert;
     private final RowMapper<BigDecimal> prijsMapper =

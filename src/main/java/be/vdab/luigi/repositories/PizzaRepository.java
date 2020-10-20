@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-public interface PizzaRespository {
+public interface PizzaRepository {
     long create(Pizza pizza);
     void update(Pizza pizza);
     void delete(long id);

@@ -7,6 +7,7 @@ public class Pizza {
     private final String naam;
     private final BigDecimal prijs;
     private final boolean pikant;
+    public BigDecimal getPrijs;
 
     public Pizza(long id, String naam, BigDecimal prijs, boolean pikant) {
         this.id = id;
