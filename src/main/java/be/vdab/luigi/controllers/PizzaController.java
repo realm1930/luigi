@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -75,8 +76,12 @@ public class PizzaController {
                 .addObject(new VanTotPrijsForm(null, null));
     }
     @GetMapping("vantotprijs")
-    public ModelAndView vanTotPrijs(VanTotPrijsForm form){
-        return new ModelAndView("vantotprijs","pizzas",pizzaService.findByPrijsBetween(
-                form.getVan(),form.getTot()));
+    public ModelAndView vanTotPrijs(VanTotPrijsForm form, Errors errors) {
+        var modelAndView = new ModelAndView("vantotprijs");
+        if (errors.hasErrors()) {
+            return modelAndView;
+        }
+        return modelAndView.addObject("pizzas",
+                pizzaService.findByPrijsBetween(form.getVan(), form.getTot()));
     }
 }
