@@ -4,6 +4,7 @@ import be.vdab.luigi.Services.EuroService;
 import be.vdab.luigi.Services.PizzaService;
 import be.vdab.luigi.domain.Pizza;
 import be.vdab.luigi.exceptions.KoersClientException;
+import be.vdab.luigi.forms.VanTotPrijsForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -51,7 +52,7 @@ public class PizzaController {
         var modelAndView = new ModelAndView("pizza");
         pizzaService.findById(id).ifPresent(pizza -> {
             modelAndView.addObject(pizza);
-            modelAndView.addObject("inDollar", euroService.naarDollar(pizza.getPrijs));
+            modelAndView.addObject("inDollar",euroService.naarDollar(pizza.getPrijs()));
         });
         return modelAndView;
     }
@@ -66,5 +67,10 @@ public class PizzaController {
     public ModelAndView pizzasMetEenPrijs(@PathVariable BigDecimal prijs) {
         return new ModelAndView("prijzen","pizzas", pizzaService.findByPrijs(prijs))
                 .addObject("prijzen", pizzaService.findUniekePrijzen());
+    }
+    @GetMapping("vantotprijs/form")
+    public ModelAndView vanTotPrijsForm() {
+        return new ModelAndView("vantotprijs")
+                .addObject(new VanTotPrijsForm(BigDecimal.ONE, BigDecimal.TEN));
     }
 }
