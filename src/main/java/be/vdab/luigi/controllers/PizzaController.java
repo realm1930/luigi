@@ -73,7 +73,7 @@ public class PizzaController {
     @GetMapping("vantotprijs/form")
     public ModelAndView vanTotPrijsForm() {
         return new ModelAndView("vantotprijs")
-                .addObject(new VanTotPrijsForm(null, null));
+                .addObject(new VanTotPrijsForm(BigDecimal.ONE, BigDecimal.TEN));
     }
     @GetMapping("vantotprijs")
     public ModelAndView vanTotPrijs(VanTotPrijsForm form, Errors errors) {
