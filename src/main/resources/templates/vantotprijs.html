@@ -1,14 +1,18 @@
 <!doctype html>
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments::head(title='Van tot prijs')"></head>
+<head th:replace="fragments::head(title='Van tot prijs')">
+    <script>
+        document.getElementsByName("van")[0].oninvalid = function() { this.setCustomValidity("Verplicht"); }
+    </script>
+</head>
 <body>
 <nav th:replace="fragments::menu"></nav>
 <h1>Van tot prijs</h1>
 <form th:object="${vanTotPrijsForm}" method="get" th:action="@{/pizzas/vantotprijs}">
     <label>Van:<span th:errors="*{van}"></span>
-        <input th:field="*{van}" autofocus>
+        <input th:field="*{van}" autofocus type="number" required min="0">
     </label>
-    <label>Tot:<span th:errors="*{tot}"></span>
+    <label>Tot:<span th:errors="*{tot}" type="number" required min="0"></span>
         <input th:field="*{tot}">
     </label>
     <button>Zoeken</button>

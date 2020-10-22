@@ -84,4 +84,8 @@ public class PizzaController {
         return modelAndView.addObject("pizzas",
                 pizzaService.findByPrijsBetween(form.getVan(), form.getTot()));
     }
+    @GetMapping("toevoegen/form")
+    public ModelAndView toevoegenForm() {
+        return new ModelAndView("toevoegen").addObject(new Pizza(0,"",null,false));
+    }
 }
