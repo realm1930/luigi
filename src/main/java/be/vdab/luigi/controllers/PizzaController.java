@@ -99,6 +99,6 @@ public class PizzaController {
             return new ModelAndView("toevoegen");
         }
         pizzaService.create(pizza);
-        return new ModelAndView("joskes","pizzas",pizzaService.findAll());
+        return new ModelAndView("pizzas","pizzas",pizzaService.findAll());
     }
 }
