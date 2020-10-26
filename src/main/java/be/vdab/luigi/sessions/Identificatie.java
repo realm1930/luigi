@@ -1,5 +1,6 @@
 package be.vdab.luigi.sessions;
 
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -13,15 +14,11 @@ public class Identificatie implements Serializable {
     @Email
     private String emailAdres;
 
-    public Identificatie(@Email String emailAdres) {
-        this.emailAdres = emailAdres;
-    }
-
     public String getEmailAdres() {
         return emailAdres;
     }
 
-    public void setEmailAdres(String emailAdres) {
+    public void setEmailAdres(@Nullable String emailAdres) {
         this.emailAdres = emailAdres;
     }
 }

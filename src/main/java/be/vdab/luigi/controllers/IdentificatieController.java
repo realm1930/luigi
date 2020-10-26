@@ -12,7 +12,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("identificatie")
-class IdentificatieController {
+public class IdentificatieController {
     private final Identificatie identificatie;
     IdentificatieController(Identificatie identificatie) {
         this.identificatie = identificatie;
