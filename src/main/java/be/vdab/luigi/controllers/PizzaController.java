@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
@@ -94,11 +95,12 @@ public class PizzaController {
         return new ModelAndView("toevoegen").addObject(new Pizza(0,"",null,false));
     }
     @PostMapping
-    public ModelAndView toevoegen(@Valid Pizza pizza, Errors errors){
+    public String toevoegen(@Valid Pizza pizza, Errors errors, RedirectAttributes redirect){
         if (errors.hasErrors()){
-            return new ModelAndView("toevoegen");
+            return "toevoegen";
         }
-        pizzaService.create(pizza);
-        return new ModelAndView("pizzas","pizzas",pizzaService.findAll());
+        var id = pizzaService.create(pizza);
+        redirect.addAttribute("toegevoegd",id);
+        return "redirect:/pizzas";
     }
 }
