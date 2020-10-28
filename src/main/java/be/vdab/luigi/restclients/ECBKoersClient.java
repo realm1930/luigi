@@ -17,8 +17,13 @@ import java.net.URL;
 class ECBKoersClient implements KoersClient {
     private final URL url;
     private final XMLInputFactory factory = XMLInputFactory.newInstance();
-    ECBKoersClient(@Value("${fixerKoersURL}") URL url) {
-        this.url = url;
+    ECBKoersClient() {
+        try {
+            this.url = new URL(
+                    "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml");
+        } catch (MalformedURLException ex) {
+            throw new KoersClientException("ECB URL is verkeerd.", ex);
+        }
     }
     @Override
     public BigDecimal getDollarKoers() {
@@ -27,7 +32,7 @@ class ECBKoersClient implements KoersClient {
             while (reader.hasNext()) {
                 reader.next();
                 if (reader.isStartElement()) {
-                    if ("USD".equals(reader.getAttributeValue(0))) {
+                    if ("USD".equals(reader.getAttributeValue(0))){
                         return new BigDecimal(reader.getAttributeValue(1));
                     }
                 }
